@@ -89,7 +89,7 @@ const Game2048 = () => {
     }, [board, gameOver]);
 
     const handleTouchStart = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         setTouchStart({
             x: e.touches[0].clientX,
             y: e.touches[0].clientY,
