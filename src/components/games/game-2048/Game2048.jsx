@@ -82,7 +82,7 @@ const Game2048 = () => {
         let newBoard = board.map(row => [...row]);
         const key = e.key.toLowerCase();
 
-        if      (e.key === 'ArrowUp'    || key === 'w') newBoard = moveUp(newBoard);}
+        if      (e.key === 'ArrowUp'    || key === 'w') newBoard = moveUp(newBoard);
         else if (e.key === 'ArrowDown'  || key === 's') newBoard = moveDown(newBoard);
         else if (e.key === 'ArrowLeft'  || key === 'a') newBoard = moveLeft(newBoard);
         else if (e.key === 'ArrowRight' || key === 'd') newBoard = moveRight(newBoard);
