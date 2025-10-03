@@ -70,6 +70,7 @@ const Game2048 = () => {
 
     const handleKeyPress = useCallback((e) => {
         if (gameOver) return;
+        e.preventDefault()
 
         let newBoard = board.map(row => [...row]);
         const key = e.key.toLowerCase();
