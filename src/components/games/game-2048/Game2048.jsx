@@ -68,9 +68,16 @@ const Game2048 = () => {
     const [resetting, setResetting] = useState(false);
     const [showResetMsg, setShowResetMsg] = useState(false);
 
+    const handleTouchStart = (e) => {
+        setTouchStart({
+            x: e.touches[0].clientX,
+            y: e.touches[0].clientY,
+        });
+    };
+
     const handleKeyPress = useCallback((e) => {
         if (gameOver) return;
-        // e.preventDefault()
+        e.preventDefault()
 
         let newBoard = board.map(row => [...row]);
         const key = e.key.toLowerCase();
@@ -88,12 +95,7 @@ const Game2048 = () => {
         }
     }, [board, gameOver]);
 
-    const handleTouchStart = (e) => {
-        setTouchStart({
-            x: e.touches[0].clientX,
-            y: e.touches[0].clientY,
-        });
-    };
+    
 
     const handleTouchEnd = useCallback((e) => {
         if (gameOver) return;
