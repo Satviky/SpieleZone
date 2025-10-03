@@ -82,10 +82,10 @@ const Game2048 = () => {
         let newBoard = board.map(row => [...row]);
         const key = e.key.toLowerCase();
 
-        if      (e.key === 'ArrowUp'    || key === 'w') newBoard = moveUp(newBoard);
-        else if (e.key === 'ArrowDown'  || key === 's') newBoard = moveDown(newBoard);
-        else if (e.key === 'ArrowLeft'  || key === 'a') newBoard = moveLeft(newBoard);
-        else if (e.key === 'ArrowRight' || key === 'd') newBoard = moveRight(newBoard);
+        if      (e.key === 'ArrowUp'    || key === 'w') {e.preventDefault(); newBoard = moveUp(newBoard);}
+        else if (e.key === 'ArrowDown'  || key === 's') {e.preventDefault(); newBoard = moveDown(newBoard);}
+        else if (e.key === 'ArrowLeft'  || key === 'a') {e.preventDefault(); newBoard = moveLeft(newBoard);}
+        else if (e.key === 'ArrowRight' || key === 'd') {e.preventDefault(); newBoard = moveRight(newBoard);}
         else return;
 
         if (changeInBoard(board, newBoard)) {
