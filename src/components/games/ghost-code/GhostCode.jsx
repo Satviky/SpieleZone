@@ -9,6 +9,26 @@ const GhostCode = () => {
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Game",
+      "name": "2048",
+      "applicationCategory": "Number game",
+      "operatingSystem": "All",
+      "url": "https://www.spielezone.xyz/ghost-code",
+      "author": { "@type": "Organization", "name": "Shadowveil StudioZ" },
+      "description": "Play Ghost Code online at Spiele Zone. Type the word before they drop to bottom.",
+      "image": "https://spiele-zone.vercel.app/images/sz.png"
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+    return () => { document.head.removeChild(script); };
+  }, []);
+
+  useEffect(() => {
     if (gameOver) return;
 
     const speed = Math.max(3000 - score * 200, 1000);

@@ -68,6 +68,27 @@ const Game2048 = () => {
     const [resetting, setResetting] = useState(false);
     const [showResetMsg, setShowResetMsg] = useState(false);
 
+    // SEO -> Kuch to online padha tha isliye add kiya hai
+    useEffect(() => {
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "Game",
+            "name": "2048",
+            "applicationCategory": "Number game",
+            "operatingSystem": "All",
+            "url": "https://www.spielezone.xyz/tzfe",
+            "author": { "@type": "Organization", "name": "Shadowveil StudioZ" },
+            "description": "Play 2048 online at Spiele Zone. Merge and win",
+            "image": "https://spiele-zone.vercel.app/images/2048.png"
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(jsonLd);
+        document.head.appendChild(script);
+        return () => { document.head.removeChild(script); };
+    }, []);
+
     const handleTouchStart = (e) => {
         setTouchStart({
             x: e.touches[0].clientX,
@@ -82,14 +103,22 @@ const Game2048 = () => {
         let newBoard = board.map(row => [...row]);
         const key = e.key.toLowerCase();
 
-        if      (e.key === 'ArrowUp'    || key === 'w') {e.preventDefault?.();
- newBoard = moveUp(newBoard);}
-        else if (e.key === 'ArrowDown'  || key === 's') {e.preventDefault?.();
- newBoard = moveDown(newBoard);}
-        else if (e.key === 'ArrowLeft'  || key === 'a') {e.preventDefault?.();
- newBoard = moveLeft(newBoard);}
-        else if (e.key === 'ArrowRight' || key === 'd') {e.preventDefault?.();
- newBoard = moveRight(newBoard);}
+        if (e.key === 'ArrowUp' || key === 'w') {
+            e.preventDefault?.();
+            newBoard = moveUp(newBoard);
+        }
+        else if (e.key === 'ArrowDown' || key === 's') {
+            e.preventDefault?.();
+            newBoard = moveDown(newBoard);
+        }
+        else if (e.key === 'ArrowLeft' || key === 'a') {
+            e.preventDefault?.();
+            newBoard = moveLeft(newBoard);
+        }
+        else if (e.key === 'ArrowRight' || key === 'd') {
+            e.preventDefault?.();
+            newBoard = moveRight(newBoard);
+        }
         else return;
 
         if (changeInBoard(board, newBoard)) {
@@ -99,7 +128,7 @@ const Game2048 = () => {
         }
     }, [board, gameOver]);
 
-    
+
 
     const handleTouchEnd = useCallback((e) => {
         if (gameOver) return;
@@ -144,6 +173,7 @@ const Game2048 = () => {
         setRating(value);
         setRated(true);
     };
+
 
     return (
         <div className={styles.container}>
