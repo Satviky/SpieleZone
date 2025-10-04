@@ -24,6 +24,7 @@
 .boardWrapper {
   position: relative;
   display: inline-block;
+  touch-action: none;
 }
 
 .board {
@@ -33,7 +34,6 @@
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease-in-out;
-  /* touch-action: none; */
 }
 
 .board.resetting {
