@@ -36,6 +36,12 @@ code {
   padding: 0;
 }
 
+.gtitle{
+  color:chartreuse;
+  background-color: #00450d89;
+  width: 100%;
+}
+
 .game-tile {
   height: 7rem;
   width: 7rem;
@@ -68,6 +74,11 @@ code {
   background-size: cover;
   background-position: center;
 }
+.tmemory {
+  background-image: url('https://em-content.zobj.net/source/apple/114/four-leaf-clover_1f340.png');
+  background-size: cover;
+  background-position: center;
+}
 
 .tbounce {
   background-image: url('../public/images/bounce.png');
@@ -90,6 +101,8 @@ code {
     font-size: 12px;
     padding: 2px;
   }
+
+
 
   .game-tile-con {
     gap: 0.5rem;

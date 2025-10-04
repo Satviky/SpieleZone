@@ -12,42 +12,42 @@ const Home2 = () => {
                 <li> 
                     <Link to='/tzfe'>
                         <div className={`${styles['game-tile']} ${styles['t2048']} ${styles['zoom']}`}>
-                            <div className='gtitle'>2048</div>
+                            <div className={styles.gtitle}>2048</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/Snake'>
                         <div className={`${styles['game-tile']} ${styles['tsnake']} ${styles['zoom']}`}>
-                            <div className='gtitle'>Snake</div>
+                            <div className={styles['gtitle']}>Snake</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/HangMan'>
                         <div className={`${styles['game-tile']} ${styles['thangman']} ${styles['zoom']}`}>
-                            <div className='gtitle'>Hangman</div>
+                            <div className={styles['gtitle']}>Hangman</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/ghost-code'>
                         <div className={`${styles['game-tile']} ${styles['tgc']} ${styles['zoom']}`}>
-                            <div className='gtitle'>Ghost Code</div>
+                            <div className={styles['gtitle']}>Ghost Code</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/memory'>
                         <div className={`${styles['game-tile']} ${styles['tmemory']} ${styles['zoom']}`}>
-                            <div className='gtitle'>Memory Puzzle</div>
+                            <div className={styles['gtitle']}>Memory Puzzle</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/bounce'>
                         <div className={`${styles['game-tile']} ${styles['tbounce']} ${styles['zoom']}`}>
-                            <div className='gtitle'>Bounce</div>
+                            <div className={styles['gtitle']}>Bounce</div>
                         </div>
                     </Link>
                 </li>
