@@ -2,6 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 import words from '../../../assets/words.json';
 import styles from './Hangman.module.css'; // ✅ CSS Module import
 
+import { Helmet } from "react-helmet";
+
+
+
 const Hangman = () => {
     const getRandomWord = () => {
         const randomIndex = Math.floor(Math.random() * words.length);
@@ -23,7 +27,7 @@ const Hangman = () => {
 
     const handleKeyPress = useCallback((e) => {
         const letter = e.key.toLowerCase();
-        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.key === "Escape" ) return;
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.key === "Escape") return;
         if (letter >= 'a' && letter <= 'z') handleGuess(letter);
     }, [handleGuess]);
 
@@ -61,6 +65,22 @@ const Hangman = () => {
 
     return (
         <div className={styles['hangman-container']}>
+            <Helmet>
+                <title>Play Hangman Online - Shadowveil StudioZ</title>
+                <meta name="description" content="Enjoy the classic Hangman word game online. Guess the word before you run out of chances in this fun browser-based puzzle by Shadowveil StudioZ!" />
+                <meta name="keywords" content="Hangman, online hangman, word game, puzzle game, spiele zone, shadowveil studioz" />
+                <meta name="robots" content="index, follow" />
+                <meta property="og:title" content="Hangman - Play Online | Spiele Zone" />
+                <meta property="og:description" content="Guess the hidden word in this free browser Hangman game. Play now at Spiele Zone!" />
+                <meta property="og:image" content="https://spiele-zone.vercel.app/images/Hangman.png" />
+                <meta property="og:url" content="https://www.spielezone.xyz/HangMan" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Hangman - Play Online | Spiele Zone" />
+                <meta name="twitter:description" content="Guess the word before you run out of lives. Play Hangman free online." />
+                <meta name="twitter:image" content="https://spiele-zone.vercel.app/images/Hangman.png" />
+                <link rel="canonical" href="https://www.spielezone.xyz/HangMan" />
+            </Helmet>
+
             <h1>Hangman Game</h1>
             <div className={styles.word}>{gameOver || won ? word : displayWord}</div>
             <div className={styles.attempts}>Remaining Attempts: {remainingAttempts}</div>
@@ -71,6 +91,7 @@ const Hangman = () => {
                         key={letter}
                         onClick={() => handleGuess(letter)}
                         disabled={guesses.includes(letter) || gameOver || won}
+                        aria-label={`Guess letter ${letter}`}
                     >
                         {letter}
                     </button>
