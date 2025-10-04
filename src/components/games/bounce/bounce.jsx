@@ -16,6 +16,26 @@ const BounceGame = () => {
     const [levelData, setLevelData] = useState(() => JSON.parse(JSON.stringify(levels[0])));
 
     useEffect(() => {
+            const jsonLd = {
+                "@context": "https://schema.org",
+                "@type": "Game",
+                "name": "2048",
+                "applicationCategory": "Arcade game",
+                "operatingSystem": "All",
+                "url": "https://www.spielezone.xyz/bounce",
+                "author": { "@type": "Organization", "name": "Shadowveil StudioZ" },
+                "description": "Play Bounce online at Spiele Zone.",
+                "image": "https://spiele-zone.vercel.app/images/bounce.png"
+            };
+    
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(jsonLd);
+            document.head.appendChild(script);
+            return () => { document.head.removeChild(script); };
+        }, []);
+
+    useEffect(() => {
         const newLevel = JSON.parse(JSON.stringify(levels[currentLevel]));
         setLevelData(newLevel);
         ballRef.current = {

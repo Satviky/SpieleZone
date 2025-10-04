@@ -4,6 +4,29 @@ import styles from './SnakeGame.module.css';
 const GRID_SIZE = 20;
 
 const SnakeGame = () => {
+
+    // SEO 
+    useEffect(() => {
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "Game",
+            "name": "Snake",
+            "applicationCategory": "Arcade game",
+            "operatingSystem": "All",
+            "url": "https://www.spielezone.xyz/Snake",
+            "author": { "@type": "Organization", "name": "Shadowveil StudioZ" },
+            "description": "Play Snake online at Spiele Zone. Swipe, feed the snake and watch it grow. Can you beat your own highscore?",
+            "image": "https://spiele-zone.vercel.app/images/snake.png"
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(jsonLd);
+        document.head.appendChild(script);
+        return () => { document.head.removeChild(script); };
+    }, []);
+
+
     const generateFood = () => ({
         x: Math.floor(Math.random() * GRID_SIZE),
         y: Math.floor(Math.random() * GRID_SIZE),
