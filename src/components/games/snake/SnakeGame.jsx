@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './SnakeGame.module.css';
-
+import { Helmet } from 'react-helmet';
 const GRID_SIZE = 20;
 
 const SnakeGame = () => {
@@ -226,6 +226,21 @@ const SnakeGame = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Play Snake Online - Shadowveil StudioZ</title>
+                <meta name="description" content="Enjoy the classic Snake game online. Feed the snake and watch it grow by Shadowveil StudioZ!" />
+                <meta name="keywords" content="Snake Game, online Snake, arcade game, puzzle game, spiele zone, snake, shadowveil studioz" />
+                <meta name="robots" content="index, follow" />
+                <meta property="og:title" content="Snake - Play Online | Spiele Zone" />
+                <meta property="og:description" content="Guess the hidden word in this free browser Hangman game. Play now at Spiele Zone!" />
+                <meta property="og:image" content="https://spiele-zone.vercel.app/images/snake.png" />
+                <meta property="og:url" content="https://www.spielezone.xyz/Snake" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Hangman - Play Online | Spiele Zone" />
+                <meta name="twitter:description" content="Guess the word before you run out of lives. Play Hangman free online." />
+                <meta name="twitter:image" content="https://spiele-zone.vercel.app/images/snake.png" />
+                <link rel="canonical" href="https://www.spielezone.xyz/Snake" />
+            </Helmet>
             <div className={styles['game-name']} style={{ textAlign: 'center' }}>
                 <h1>Snake Game</h1>
             </div>
@@ -249,7 +264,7 @@ const SnakeGame = () => {
                             </button>
                         </div>
                     )}
-                    
+
                     {isStarted && (
                         <div className={styles['snake-game']}>
                             {Array.from({ length: GRID_SIZE }, (_, rowIndex) => (

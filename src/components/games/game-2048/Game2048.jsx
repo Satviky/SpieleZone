@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import styles from './Game2048.module.css';
-
+import { Helmet } from 'react-helmet';
 const rotateLeft = (board) => board[0].map((_, i) => board.map(row => row[3 - i]));
 const rotateRight = (board) => board[0].map((_, i) => board.map(row => row[i]).reverse());
 
@@ -177,6 +177,22 @@ const Game2048 = () => {
 
     return (
         <div className={styles.container}>
+            <Helmet>
+                <title>Play 2048 Online - Shadowveil StudioZ</title>
+                <meta name="description" content="Enjoy the classic 2048 game online. Merge and score by Shadowveil StudioZ!" />
+                <meta name="keywords" content="Hangman, online hangman, word game, puzzle game, spiele zone, shadowveil studioz" />
+                <meta name="robots" content="index, follow" />
+                <meta property="og:title" content="2048 - Play Online | Spiele Zone" />
+                <meta property="og:description" content="Guess the hidden word in this free browser Hangman game. Play now at Spiele Zone!" />
+                <meta property="og:image" content="https://spiele-zone.vercel.app/images/2048.png" />
+                <meta property="og:url" content="https://www.spielezone.xyz/tzfe" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="2048 - Play Online | Spiele Zone" />
+                <meta name="twitter:description" content="Guess the word before you run out of lives. Play Hangman free online." />
+                <meta name="twitter:image" content="https://spiele-zone.vercel.app/images/tzfe.png" />
+                <link rel="canonical" href="https://www.spielezone.xyz/tzfe" />
+            </Helmet>
+
             <h1 className={styles.title}>2048 Mario Edition</h1>
 
             {showResetMsg && (
