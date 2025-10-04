@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import styles from "../../index.module.css";
 
 const Home2 = () => {
     return (
@@ -7,45 +8,45 @@ const Home2 = () => {
             <p style={{ marginBottom: '1rem', color: '#666' }}>by Shadowveil StudioZ</p>
             <h2 style={{ marginBottom: '2rem', color: '#888' }}>Choose Your Game</h2>
 
-            <ul className='game-tile-con'>
-                <li>
+            <ul className={styles['game-tile-con']}>
+                <li> 
                     <Link to='/tzfe'>
-                        <div className='game-tile t2048 zoom'>
+                        <div className={`${styles['game-tile']} ${styles['t2048']} ${styles['zoom']}`}>
                             <div className='gtitle'>2048</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/Snake'>
-                        <div className='game-tile tsnake zoom'>
+                        <div className={`${styles['game-tile']} ${styles['tsnake']} ${styles['zoom']}`}>
                             <div className='gtitle'>Snake</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/HangMan'>
-                        <div className='game-tile thangman zoom'>
+                        <div className={`${styles['game-tile']} ${styles['thangman']} ${styles['zoom']}`}>
                             <div className='gtitle'>Hangman</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/ghost-code'>
-                        <div className='game-tile tgc zoom'>
+                        <div className={`${styles['game-tile']} ${styles['tgc']} ${styles['zoom']}`}>
                             <div className='gtitle'>Ghost Code</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/memory'>
-                        <div className='game-tile tmemory zoom'>
+                        <div className={`${styles['game-tile']} ${styles['tmemory']} ${styles['zoom']}`}>
                             <div className='gtitle'>Memory Puzzle</div>
                         </div>
                     </Link>
                 </li>
                 <li>
                     <Link to='/bounce'>
-                        <div className='game-tile tbounce zoom'>
+                        <div className={`${styles['game-tile']} ${styles['tbounce']} ${styles['zoom']}`}>
                             <div className='gtitle'>Bounce</div>
                         </div>
                     </Link>
