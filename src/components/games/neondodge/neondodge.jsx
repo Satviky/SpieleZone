@@ -56,7 +56,19 @@ const Scene = ({ resetGame, setGameOver }) => {
   const [hit, setHit] = useState(false);
   const [score, setScore] = useState(0);
 
-  // Track pressed keys
+  const [activeCubeIndex, setActiveCubeIndex] = useState(0);
+
+  const cubes = useMemo(
+    () =>
+      Array.from({ length: 7 }).map(() => ({
+        position: [(Math.random() - 0.5) * 6, 5, 0], // start above
+        speed: 0.03 + Math.random() * 0.03,
+        size: 0.3 + Math.random() * 0.5
+      })),
+    []
+  );
+
+  // Key handling for player
   const keys = useRef({ left: false, right: false });
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowLeft') keys.current.left = true;
@@ -76,20 +88,8 @@ const Scene = ({ resetGame, setGameOver }) => {
     };
   }, []);
 
-  // Create cubes
-  const cubes = useMemo(
-    () =>
-      Array.from({ length: 7 }).map(() => ({
-        position: [(Math.random() - 0.5) * 6, Math.random() * 6 + 2, 0],
-        speed: 0.03 + Math.random() * 0.03,
-        size: 0.3 + Math.random() * 0.5
-      })),
-    []
-  );
-
-  // Update player & score each frame
+  // Update player & score
   useFrame((state, delta) => {
-    // Smooth player movement
     setPlayerX((x) => {
       let newX = x;
       if (keys.current.left) newX -= 0.08;
@@ -97,11 +97,23 @@ const Scene = ({ resetGame, setGameOver }) => {
       return THREE.MathUtils.clamp(newX, -3, 3);
     });
 
-    // Increment score while alive
     if (!hit) setScore((s) => s + delta * 10);
   });
 
-  // Handle hit/game over
+  const handleHit = () => {
+    setHit(true);
+  };
+
+  const handleCubeReset = (index) => {
+    // after 1-2 seconds spawn next cube
+    setTimeout(() => {
+      const nextIndex = (index + 1) % cubes.length;
+      cubes[nextIndex].position[1] = 5;
+      cubes[nextIndex].position[0] = (Math.random() - 0.5) * 6;
+      setActiveCubeIndex(nextIndex);
+    }, 1500); // delay before next cube falls
+  };
+
   useEffect(() => {
     if (hit) {
       setGameOver(true);
@@ -114,15 +126,27 @@ const Scene = ({ resetGame, setGameOver }) => {
       <ambientLight intensity={0.4} />
       <pointLight position={[5, 5, 5]} color="#00ffff" intensity={3} />
       <Player position={playerX} />
-      {cubes.map((cube, i) => (
-        <FallingCube key={i} {...cube} onHit={() => setHit(true)} />
-      ))}
+      {cubes.map((cube, i) =>
+        i === activeCubeIndex ? (
+          <FallingCube
+            key={i}
+            {...cube}
+            onHit={() => handleHit()}
+            // reset cube position after it goes below screen
+            speed={cube.speed}
+          />
+        ) : null
+      )}
       <Html position={[0, 3, 0]}>
         <div className={styles.score}>Score: {Math.floor(score)}</div>
       </Html>
     </>
   );
 };
+
+
+// ok
+
 
 const NeonDodge3D = () => {
   const [gameOver, setGameOver] = useState(false);
