@@ -1,0 +1,150 @@
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Html } from '@react-three/drei';
+import * as THREE from 'three';
+import { useRef, useState, useMemo, useEffect } from 'react';
+import styles from './NeonDodge3D.module.css';
+
+const Player = ({ position }) => {
+  const ref = useRef();
+  useFrame(() => {
+    ref.current.position.x = THREE.MathUtils.lerp(
+      ref.current.position.x,
+      position,
+      0.15
+    );
+  });
+
+  return (
+    <mesh ref={ref} position={[0, -2, 0]}>
+      <sphereGeometry args={[0.4, 32, 32]} />
+      <meshStandardMaterial emissive="#00ffff" emissiveIntensity={2} color="#00ffff" />
+    </mesh>
+  );
+};
+
+const FallingCube = ({ position, speed, size = 0.5, onHit }) => {
+  const ref = useRef();
+
+  useFrame(() => {
+    ref.current.position.y -= speed;
+
+    // Reset cube when it goes offscreen
+    if (ref.current.position.y < -3) {
+      ref.current.position.y = 5;
+      ref.current.position.x = (Math.random() - 0.5) * 6;
+    }
+
+    // Collision detection
+    const distance = ref.current.position.distanceTo(new THREE.Vector3(0, -2, 0));
+    if (distance < 0.6) onHit();
+
+    // Rotate cubes for cool effect
+    ref.current.rotation.x += 0.01;
+    ref.current.rotation.y += 0.01;
+  });
+
+  return (
+    <mesh ref={ref} position={position}>
+      <boxGeometry args={[size, size, size]} />
+      <meshStandardMaterial emissive="#ff00ff" emissiveIntensity={2} color="#ff00ff" />
+    </mesh>
+  );
+};
+
+const Scene = ({ resetGame, setGameOver }) => {
+  const [playerX, setPlayerX] = useState(0);
+  const [hit, setHit] = useState(false);
+  const [score, setScore] = useState(0);
+
+  // Track pressed keys
+  const keys = useRef({ left: false, right: false });
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') keys.current.left = true;
+    if (e.key === 'ArrowRight') keys.current.right = true;
+  };
+  const handleKeyUp = (e) => {
+    if (e.key === 'ArrowLeft') keys.current.left = false;
+    if (e.key === 'ArrowRight') keys.current.right = false;
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
+
+  // Create cubes
+  const cubes = useMemo(
+    () =>
+      Array.from({ length: 7 }).map(() => ({
+        position: [(Math.random() - 0.5) * 6, Math.random() * 6 + 2, 0],
+        speed: 0.03 + Math.random() * 0.03,
+        size: 0.3 + Math.random() * 0.5
+      })),
+    []
+  );
+
+  // Update player & score each frame
+  useFrame((state, delta) => {
+    // Smooth player movement
+    setPlayerX((x) => {
+      let newX = x;
+      if (keys.current.left) newX -= 0.08;
+      if (keys.current.right) newX += 0.08;
+      return THREE.MathUtils.clamp(newX, -3, 3);
+    });
+
+    // Increment score while alive
+    if (!hit) setScore((s) => s + delta * 10);
+  });
+
+  // Handle hit/game over
+  useEffect(() => {
+    if (hit) {
+      setGameOver(true);
+      setTimeout(resetGame, 2000);
+    }
+  }, [hit]);
+
+  return (
+    <>
+      <ambientLight intensity={0.4} />
+      <pointLight position={[5, 5, 5]} color="#00ffff" intensity={3} />
+      <Player position={playerX} />
+      {cubes.map((cube, i) => (
+        <FallingCube key={i} {...cube} onHit={() => setHit(true)} />
+      ))}
+      <Html position={[0, 3, 0]}>
+        <div className={styles.score}>Score: {Math.floor(score)}</div>
+      </Html>
+    </>
+  );
+};
+
+const NeonDodge3D = () => {
+  const [gameOver, setGameOver] = useState(false);
+
+  const resetGame = () => {
+    setGameOver(false);
+  };
+
+  return (
+    <div className={styles.container}>
+      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+        <color attach="background" args={['#05000f']} />
+        <Scene resetGame={resetGame} setGameOver={setGameOver} />
+        {gameOver && (
+          <Html center>
+            <div className={styles.gameOver}>💥 Game Over 💥</div>
+          </Html>
+        )}
+        <OrbitControls enableZoom={false} />
+      </Canvas>
+    </div>
+  );
+};
+
+export default NeonDodge3D;

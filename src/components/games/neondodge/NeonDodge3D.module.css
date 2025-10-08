@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at bottom, #0ff1, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameOver {
+  font-size: 2rem;
+  color: #ff00ff;
+  font-weight: bold;
+  text-shadow: 0 0 20px #ff00ff;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.1); opacity: 0.8; }
+}
