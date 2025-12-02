@@ -68,7 +68,11 @@ const GhostCode = () => {
   }, [words, gameOver]);
 
   const handleInput = (event) => {
-    const typedWord = event.target.value.toLowerCase();
+    // const typedWord = event.target.value.toLowerCase();
+    let typedWord = event.target.value.toLowerCase();
+
+    typedWord = typedWord.replace(/[^a-z]/g, ""); //<- here here you made the changes
+
     setCurrentWord(typedWord);
 
     if (words.some((word) => word.text.toLowerCase() === typedWord)) {
