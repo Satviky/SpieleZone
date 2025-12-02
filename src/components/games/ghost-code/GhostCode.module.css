@@ -49,6 +49,12 @@
   width: 100%;
   margin-bottom: 10px;
 }
+.btncont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
 
 .button {
   padding: 10px 20px;
@@ -58,6 +64,7 @@
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
+  gap: 5px;
 }
 
 .button:hover {

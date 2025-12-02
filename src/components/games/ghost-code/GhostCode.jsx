@@ -8,6 +8,9 @@ const GhostCode = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
+  const isMobile = () =>
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
   useEffect(() => {
     const jsonLd = {
       "@context": "https://schema.org",
@@ -98,7 +101,36 @@ const GhostCode = () => {
         <>
           <h2 className={styles.subtitle}>Game Over!</h2>
           <p className={styles.score}>Your final score: {score}</p>
-          <button onClick={restartGame} className={styles.button}>Restart</button>
+
+
+          <div className={styles.btncont}>
+            <button onClick={restartGame} className={styles.button}>Restart</button>
+
+            {isMobile() ? (
+              <button
+                className={styles.button}
+                onClick={() => {
+                  const text = `🕹️I scored ${score} points in GhostCode on Spiele Zone!👻\n Try to beat my Score: <https://www.spielezone.xyz/ghost-code>`;
+                  navigator.share({ text });
+                }}
+              >
+                Share
+              </button>
+            ) : (
+              <button
+                className={styles.button}
+                onClick={() => {
+                  const text = `I scored ${score} points in GhostCode on Spiele Zone! 🕹️👻 \n Think you can beat it? \n Play here: <https://www.spielezone.xyz/ghost-code>`;
+                  navigator.clipboard.writeText(text);
+                  alert("Copied! Paste it anywhere.");
+                }}
+              >
+                Share
+              </button>
+            )}
+          </div>
+
+
         </>
       ) : (
         <>
