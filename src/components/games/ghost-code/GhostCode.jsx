@@ -120,7 +120,7 @@ const GhostCode = () => {
               <button
                 className={styles.button}
                 onClick={() => {
-                  const text = `I scored ${score} points in GhostCode on Spiele Zone! 🕹️👻 \n Think you can beat it? \n Play here: <https://www.spielezone.xyz/ghost-code>`;
+                  const text = `🕹️I scored ${score} points in GhostCode on Spiele Zone! 👻 \n Think you can beat it? \n Play here: <https://www.spielezone.xyz/ghost-code>`;
                   navigator.clipboard.writeText(text);
                   alert("Copied! Paste it anywhere.");
                 }}
