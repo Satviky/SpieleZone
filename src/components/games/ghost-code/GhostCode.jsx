@@ -99,7 +99,7 @@ const GhostCode = () => {
 
       {gameOver ? (
         <>
-          <h2 className={styles.subtitle}>👾Game Over!👾</h2>
+          <h2 className={styles.subtitle}>Game Over!</h2>
           <p className={styles.score}>Your final score: {score}</p>
 
 
