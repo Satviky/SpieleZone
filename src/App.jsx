@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from "react";
+
 import './App.module.css';
 
 // Layout Components
@@ -33,9 +35,70 @@ const NotFound = () => (
   </div>
 );
 
+// function Sayori2() {
+//   window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
+//   return null;
+// }
+// due to alas i added it like this
 function Sayori() {
-  window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
-  return null;
+  useEffect(() => {
+    window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
+  }, []);
+
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        background:
+          "radial-gradient(circle at top, #160012, #000000 70%)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#e5e5e5",
+        fontFamily: "serif",
+        textAlign: "center",
+      }}
+    >
+      {/* Sigil */}
+      <div
+        style={{
+          width: 64,
+          height: 64,
+          borderRadius: "50%",
+          border: "2px solid rgba(255,0,80,0.6)",
+          boxShadow:
+            "0 0 18px rgba(255,0,80,0.5), inset 0 0 18px rgba(255,0,80,0.3)",
+          animation: "pulse 1.8s ease-in-out infinite",
+        }}
+      />
+
+      <h1
+        style={{
+          marginTop: 24,
+          fontSize: "2.2rem",
+          letterSpacing: "0.12em",
+          textShadow: "0 0 12px rgba(255,0,80,0.35)",
+        }}
+      >
+        Summoning Sayori
+      </h1>
+
+      <p style={{ marginTop: 10, opacity: 0.75 }}>
+        Crossing the veil<span className="dots">...</span>
+      </p>
+
+      {/* Inline keyframes */}
+      <style>{`
+        @keyframes pulse {
+          0% { transform: scale(0.9); opacity: 0.5; }
+          50% { transform: scale(1.05); opacity: 1; }
+          100% { transform: scale(0.9); opacity: 0.5; }
+        }
+      `}</style>
+    </div>
+  );
 }
 
 function App() {
@@ -69,6 +132,7 @@ function App() {
 
             {/* redirect */}
             <Route path="/sayori" element={ <Sayori/> } />
+            {/* <Route path="/sayori2" element={ <Sayori2/> } /> */}
             {/* Final Destination */}
             <Route path="*" element={<NotFound />} />
           </Routes>
