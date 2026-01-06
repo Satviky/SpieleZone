@@ -69,7 +69,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
 
             {/* redirect */}
-            <Route path="/r-test" element={ Sayori } />
+            <Route path="/sayori" element={ Sayori } />
 
           </Routes>
 
