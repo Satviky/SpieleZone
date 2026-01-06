@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.module.css';
 
 // Layout Components
@@ -33,12 +33,17 @@ const NotFound = () => (
   </div>
 );
 
+function Sayori() {
+  window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
+  return null;
+}
+
 function App() {
   return (
     <Router>
       <div className="app-wrapper">
         <Navbar />
-        
+
         <div className="main-content">
           <Routes>
             {/* Homepage */}
@@ -62,6 +67,10 @@ function App() {
             <Route path="/reach-us" element={<CU />} />
             <Route path="/privacy-policy" element={<Prpo />} />
             <Route path="*" element={<NotFound />} />
+
+            {/* redirect */}
+            <Route path="/rd" element={ Sayori } />
+
           </Routes>
 
           <DonateButton />
