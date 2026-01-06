@@ -66,11 +66,11 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/reach-us" element={<CU />} />
             <Route path="/privacy-policy" element={<Prpo />} />
-            <Route path="*" element={<NotFound />} />
 
             {/* redirect */}
-            <Route path="/sayori" element={ Sayori } />
-
+            <Route path="/sayori" element={ <Sayori/> } />
+            {/* Final Destination */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
 
           <DonateButton />
