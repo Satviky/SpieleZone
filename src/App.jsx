@@ -42,7 +42,11 @@ const NotFound = () => (
 // due to alas i added it like this
 function Sayori() {
   useEffect(() => {
-    window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
+    const t = setTimeout(() => {
+      window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
+      // }, []);
+    }, 900);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -131,7 +135,7 @@ function App() {
             <Route path="/privacy-policy" element={<Prpo />} />
 
             {/* redirect */}
-            <Route path="/sayori" element={ <Sayori/> } />
+            <Route path="/sayori" element={<Sayori />} />
             {/* <Route path="/sayori2" element={ <Sayori2/> } /> */}
             {/* Final Destination */}
             <Route path="*" element={<NotFound />} />
