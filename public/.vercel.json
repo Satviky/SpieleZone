@@ -5,6 +5,11 @@
       "has": [{ "type": "host", "value": "www.spiele-zone.vercel.app" }],
       "destination": "https://spiele-zone.vercel.app/",
       "permanent": true
+    },
+    {
+      "source": "/sayori",
+      "destination": "https://www.gsatvik.in/Shadowveil-StudioZ/sayori",
+      "permanent": true
     }
   ]
 }
