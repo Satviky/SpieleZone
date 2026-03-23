@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from "react";
 
 import './App.module.css';
@@ -14,10 +14,14 @@ import AboutUs from './components/pages/AboutPage.jsx';
 import CU from './components/pages/ContactPage.jsx';
 import Prpo from './components/PrivacyPolicy.jsx';
 import Home2 from './components/pages/home2.jsx'
+// language
+import HomeDE from './components/pages/de-home.jsx';
 
 
 // Extras
 import GCintro from './components/games/ghost-code/GhostCodeIntro.jsx';
+import Caa from './components/pages/credits.jsx';
+import Test from './components/games/test/test.jsx';
 
 // Games
 import Game2048 from './components/games/game-2048/Game2048.jsx';
@@ -39,7 +43,7 @@ const NotFound = () => (
 //   window.location.replace("https://gsatvik.in/shadowveil-studioz/sayori");
 //   return null;
 // }
-// due to alas i added it like this
+// due to alas i added it like this [it's alas... laziness]
 function Sayori() {
   useEffect(() => {
     const t = setTimeout(() => {
@@ -116,6 +120,7 @@ function App() {
             {/* Homepage */}
             <Route path="/" element={<Homepg />} />
             <Route path="/home" element={<Home2 />} />
+            <Route path="/home2" element={<HomeDE />} />
 
             {/* Game intros */}
             <Route path="/ghost-code" element={<GCintro />} />
@@ -128,11 +133,13 @@ function App() {
             <Route path="/memory" element={<MemoryPuzzle />} />
             <Route path="/bounce" element={<BounceGame />} />
             <Route path="/NeonDodge3D" element={<NeonDodge3D />} />
+            <Route path="/test" element={<Test />} />
 
             {/* Other pages */}
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/reach-us" element={<CU />} />
             <Route path="/privacy-policy" element={<Prpo />} />
+            <Route path="/acknowledgement" element={<Caa />} />
 
             {/* redirect */}
             <Route path="/sayori" element={<Sayori />} />
