@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, ArrowUp, Info, ShieldCheck } from 'lucide-react';
+import { Mail, ArrowUp, Info, ShieldCheck } from 'lucide-react';
+import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 import styles from './BottomBar.module.css';
 
 const BottomBar = () => {
@@ -16,7 +17,7 @@ const BottomBar = () => {
           <div className={styles.profileRow}>
             <div className={styles.profileInfo}>
               <p className={styles.name}>Satvik Gupta</p>
-              <p className={styles.title}>Final-Year Multi Language Developer</p>
+              <p className={styles.title}>Multi Language Developer</p>
             </div>
             <div className={styles.socials}>
               <a href="https://github.com/Satviky" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -37,10 +38,10 @@ const BottomBar = () => {
           <div className={styles.profileRow}>
             <div className={styles.profileInfo}>
               <p className={styles.name}>Keshav Aggarwal</p>
-              <p className={styles.title}>First-Year Web Developer</p>
+              <p className={styles.title}>Open Source Contributor</p>
             </div>
             <div className={styles.socials}>
-              <a href="https://github.com/Satviky" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a href="https://github.com/k-keshav-aggarwal" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Github size={24} />
               </a>
               <a href="https://linkedin.com/agg-keshav" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
